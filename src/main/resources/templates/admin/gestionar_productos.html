@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div>listar productos, permitiendo borrar y editar</div>
+<div>
+    <a href="registrarVideojuego">nuevo producto</a>
+</div>
+
+<div th:each="v : ${videojuegos}" style="margin: 15px">
+    titulo: <span th:text="${v.titulo}"></span>
+    <br>
+    <img th:src="@{${ '../mostrar_imagen?id=' + v.id }}" height="80px" />
+    <br>
+    precio: <span th:text="${v.precio}"></span>
+    <br>
+    plataforma: <span th:text="${v.plataforma}"></span>
+    <br>
+    descripcion: <span th:text="${v.descripcion}"></span>
+    <br>
+    <a th:href="@{${ 'borrarVideojuego?id=' + v.id }}"
+       onclick="return confirm('¿estas seguro?')" >BORRAR</a>
+    <br>
+    <a th:href="@{${ 'editarVideojuego?id=' + v.id }}"
+      >EDITAR</a>
+</div>
+
+</body>
+</html>
